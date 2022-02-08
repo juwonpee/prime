@@ -15,11 +15,15 @@ typedef struct currentNumber_t {
     uint64_t currentNumber;
 } currentNumber_t;
 
+typedef enum runType_t {
+    normal,
+    avx,
+} runType_t;
 
 
 class cruncher {
     public:
-        cruncher(writeQueue_t* _writeQueue, currentNumber_t* _currentNumber, int crunchType);
+        cruncher(writeQueue_t* _writeQueue, currentNumber_t* _currentNumber, runType_t crunchType);
         ~cruncher();
 
     private:
@@ -27,6 +31,9 @@ class cruncher {
         currentNumber_t* currentNumber;
         uint64_t number;
 
+        // Normal number crunching using %
         bool crunchNormal();
+
+        // Number crunching using AVX intrinsics
         bool crunchAVX();
 };
