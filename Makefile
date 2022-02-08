@@ -1,20 +1,22 @@
 CC = g++
-CC_INCLUDE = -I
-CCFLAGS = -O0 -ggdb -Wall
-LDFLAGS = 
+CC_INCLUDE = $(patsubst %, -I%, $(shell find src -type d))
+CC_FLAGS = -O3 -mavx2
 
-SRC_DIR = src
+LIBARIES = -lsfml-graphics -lsfml-window -lsfml-system -lpthread
 
-C_SOURCES = $(wildcard $(SRC_DIR)/*.cpp)
-C_OBJ = $(C_SOURCES:.cpp=.o)
-OUTPUT = build/output
+SRC_DIR = src/
+OUTPUT = build/prime
+SOURCE = $(wildcard $(SRC_DIR)*.cpp) $(wildcard $(SRC_DIR)*/*.cpp)
+OBJECTS = $(SOURCE:.cpp=.o)
 
 
-all: 
-	$(CC) $(C_SOURCES) -o $(OUTPUT)
 
-a:
-	$(C_OBJ)
+all: $(OBJECTS)
+	$(CC) $(OBJECTS) -o $(OUTPUT) $(LIBARIES)
+	find . -name "*.o" | xargs -r rm 
+
+%.o: %.cpp
+	$(CC) $(CC_INCLUDE) -c $< -o $@ $(CC_FLAGS)
 
 clear:
 	find . -name "*.o" | xargs -r rm 
