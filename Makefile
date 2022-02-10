@@ -1,6 +1,6 @@
 CC = g++
 CC_INCLUDE = $(patsubst %, -I%, $(shell find src -type d))
-CC_FLAGS = -O3 -mavx2
+CC_FLAGS = -O0 -mavx2 -ggdb
 
 LIBARIES = -lsfml-graphics -lsfml-window -lsfml-system -lpthread
 

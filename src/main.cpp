@@ -149,7 +149,7 @@ int main(void) {
 			// Output current integer length every interval
 			cout << '\r' << "Number Count: " << to_string(count) << ", Prime number: " << temp;
 			count++;
-			//output << temp << '\n';
+			output << temp << '\n';
 			localWriteQueue.pop();
 
 			// Performance monitoring for normal integer operations

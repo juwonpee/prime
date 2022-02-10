@@ -61,7 +61,7 @@ bool cruncher::crunchAVX() {
 	else if (number <= 8388608 - 1) { // Largest number of 32 bit float
 		float divided[8];
 		__m256 dividendAVX = _mm256_set1_ps((float)number);
-		for (uint64_t divisor = 2; divisor + 8 < number / 2 + 1; divisor += 4) {
+		for (uint32_t divisor = 2; divisor + 8 < number / 2 + 1; divisor += 8) {
 			__m256 divisorAVX = _mm256_set_ps((float)divisor, (float)divisor + 1, (float)divisor + 2, (float)divisor + 3, (float)divisor + 4, (float)divisor + 5, (float)divisor + 6, (float)divisor + 7);
 			__m256 dividedAVX = _mm256_div_ps(dividendAVX, divisorAVX);
 			_mm256_storeu_ps(divided, dividedAVX);
