@@ -30,6 +30,7 @@ void cruncherThread(runType_t runType) {
 }
 
 int main(void) {
+	cout << sizeof(float) << endl;
 
 	cout << "Prime number calculator" << endl;
 	cout << "Just a practice projects for performance optimizations" << endl;
