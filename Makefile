@@ -2,7 +2,7 @@ CC = g++
 CC_INCLUDE = $(patsubst %, -I%, $(shell find src -type d))
 CC_FLAGS = -O3 -mavx2
 
-LIBARIES = -lsfml-graphics -lsfml-window -lsfml-system -lpthread
+LIBARIES = -lpthread
 
 SRC_DIR = src/
 OUTPUT = build/prime
